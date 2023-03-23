@@ -5,6 +5,7 @@
 package Vista;
 
 import Controlador.ControladorLogin;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -40,6 +41,7 @@ public class Login extends javax.swing.JFrame {
 
         olvido = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         usuario = new javax.swing.JTextField();
@@ -63,13 +65,24 @@ public class Login extends javax.swing.JFrame {
 
         jPanel1.setLayout(new java.awt.GridLayout(0, 1));
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Logo");
-        jPanel1.add(jLabel2);
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/logo johan actualizado (1).png"))); // NOI18N
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 226, 210));
+
+        jPanel1.add(jPanel3);
 
         jPanel2.setLayout(new java.awt.GridLayout(0, 1));
 
-        usuario.setText("Usuario...");
+        usuario.setForeground(new java.awt.Color(204, 204, 204));
+        usuario.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        usuario.setText("Digite su usuario");
+        usuario.setBorder(javax.swing.BorderFactory.createTitledBorder("Usuario"));
+        usuario.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                usuarioFocusLost(evt);
+            }
+        });
         usuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 usuarioMouseClicked(evt);
@@ -82,10 +95,23 @@ public class Login extends javax.swing.JFrame {
         });
         jPanel2.add(usuario);
 
-        contrasenia.setText("Contraseña...");
+        contrasenia.setForeground(new java.awt.Color(204, 204, 204));
+        contrasenia.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        contrasenia.setText("Digite su contraseña");
+        contrasenia.setBorder(javax.swing.BorderFactory.createTitledBorder("Contraseña"));
+        contrasenia.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                contraseniaFocusLost(evt);
+            }
+        });
         contrasenia.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 contraseniaMouseClicked(evt);
+            }
+        });
+        contrasenia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contraseniaActionPerformed(evt);
             }
         });
         jPanel2.add(contrasenia);
@@ -108,6 +134,16 @@ public class Login extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         ControladorLogin cLogin = new ControladorLogin(usuario.getText(), contrasenia.getText());
+        
+        
+        boolean valor = cLogin.VerificarUsuarios(cLogin.usuario, cLogin.contrasenia);
+        if(valor == true){
+            Presentacion_2 presentacion2 = Presentacion_2.getPresentacion_2();
+            presentacion2.setVisible(true);
+        }
+        
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioActionPerformed
@@ -116,12 +152,19 @@ public class Login extends javax.swing.JFrame {
 
     private void usuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usuarioMouseClicked
         // TODO add your handling code here:
-        usuario.setText("");
+       
+        if(usuario.getText().equals("Digite su usuario")){
+         usuario.setText("");
+         usuario.setForeground(new java.awt.Color(0, 0, 0));
+        }
     }//GEN-LAST:event_usuarioMouseClicked
 
     private void contraseniaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contraseniaMouseClicked
         // TODO add your handling code here:
-        contrasenia.setText("");
+        if(contrasenia.getText().equals("Digite su contraseña")){
+           contrasenia.setForeground(new java.awt.Color(0, 0, 0));
+           contrasenia.setText(""); 
+        }
     }//GEN-LAST:event_contraseniaMouseClicked
 
     private void olvidoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_olvidoMouseEntered
@@ -134,6 +177,27 @@ public class Login extends javax.swing.JFrame {
         olvido.setForeground(new java.awt.Color(0, 0, 0));
     }//GEN-LAST:event_olvidoMouseExited
 
+    private void contraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contraseniaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_contraseniaActionPerformed
+
+    private void contraseniaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_contraseniaFocusLost
+        // TODO add your handling code here:
+        if(contrasenia.getText().equals("")){
+           contrasenia.setForeground(new java.awt.Color(204, 204, 204));
+           contrasenia.setText("Digite su contraseña"); 
+                }
+        
+    }//GEN-LAST:event_contraseniaFocusLost
+
+    private void usuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usuarioFocusLost
+        // TODO add your handling code here:
+        if(usuario.getText().equals("")){
+           usuario.setForeground(new java.awt.Color(204, 204, 204));
+           usuario.setText("Digite su usuario"); 
+                }
+    }//GEN-LAST:event_usuarioFocusLost
+
     /**
      * @param args the command line arguments
      */
@@ -145,6 +209,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel olvido;
     private javax.swing.JTextField usuario;
     // End of variables declaration//GEN-END:variables

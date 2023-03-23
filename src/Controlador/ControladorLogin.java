@@ -4,14 +4,16 @@
  */
 package Controlador;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author sistemas
  */
 public class ControladorLogin {
     
-    private String usuario;
-    private String contrasenia;
+    public String usuario;
+    public String contrasenia;
 
     public ControladorLogin(String usuario, String contrasenia) {
         if(this.VerificarUsuarios(usuario, contrasenia)){
@@ -21,10 +23,16 @@ public class ControladorLogin {
         
     }
     
-    public boolean VerificarUsuarios(String usuario, String contrasenia){
+    public static boolean VerificarUsuarios(String usuario, String contrasenia){
         boolean estado = false;
-        if((usuario.equals("daniel"))&&(contrasenia.equals("1234")))
+        
+        if(usuario == null || contrasenia == null) {
+        // Mostrar mensaje de error o devolver un valor nulo
+        JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if((usuario.equals("daniel"))&&(contrasenia.equals("1234"))) {
                 estado = true;
+        }
         return estado;
     }
     
