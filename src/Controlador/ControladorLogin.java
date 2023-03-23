@@ -16,7 +16,7 @@ public class ControladorLogin {
     public String contrasenia;
 
     public ControladorLogin(String usuario, String contrasenia) {
-        if(this.VerificarUsuarios(usuario, contrasenia)){
+        if( VerificarUsuarios(usuario, contrasenia)){
           this.usuario = usuario;
           this.contrasenia = contrasenia;  
         }
@@ -26,13 +26,14 @@ public class ControladorLogin {
     public static boolean VerificarUsuarios(String usuario, String contrasenia){
         boolean estado = false;
         
-        if(usuario == null || contrasenia == null) {
+        if( usuario == null || contrasenia == null) {
         // Mostrar mensaje de error o devolver un valor nulo
-        JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        else if((usuario.equals("daniel"))&&(contrasenia.equals("1234"))) {
-                estado = true;
+            else if((usuario.equals("daniel"))&&(contrasenia.equals("1234"))) {
+            estado = true;
         }
+        
         return estado;
     }
     

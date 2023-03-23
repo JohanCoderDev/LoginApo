@@ -5,15 +5,14 @@
 package Vista;
 
 import Controlador.ControladorLogin;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author sistemas
  */
 public class Login extends javax.swing.JFrame {
+    private static Login logins;
     
-    private static Login login;
 
     /**
      * Creates new form Login
@@ -24,11 +23,12 @@ public class Login extends javax.swing.JFrame {
     }
     
     public static Login getLogin(){
-        if(login == null)
-            login = new Login();
-        
-        return login;
+        if(logins == null){
+            logins = new Login();
+        }
+        return logins;
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -136,10 +136,10 @@ public class Login extends javax.swing.JFrame {
         ControladorLogin cLogin = new ControladorLogin(usuario.getText(), contrasenia.getText());
         
         
-        boolean valor = cLogin.VerificarUsuarios(cLogin.usuario, cLogin.contrasenia);
+        boolean valor = ControladorLogin.VerificarUsuarios(cLogin.usuario, cLogin.contrasenia);
         if(valor == true){
-            Presentacion_2 presentacion2 = Presentacion_2.getPresentacion_2();
-            presentacion2.setVisible(true);
+            Bienvenida bueno = Bienvenida.bienvenida();
+            bueno.setVisible(true);
         }
         
         
@@ -198,6 +198,8 @@ public class Login extends javax.swing.JFrame {
                 }
     }//GEN-LAST:event_usuarioFocusLost
 
+    
+    
     /**
      * @param args the command line arguments
      */
