@@ -5,6 +5,7 @@
 package Vista;
 
 import Controlador.ControladorLogin;
+import DAO.DAO_login;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,17 +15,15 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
     
     private static Login login;
+    private DAO_login cLogin = ControladorLogin.getControladorLogin();
     
-    private ControladorLogin cLogin;
-    
-
     /**
      * Creates new form Login
      */
     private Login() {
         initComponents();
         this.setLocationRelativeTo(null);
-        cLogin = new ControladorLogin();
+        
     }
     
     public static Login getLogin(){

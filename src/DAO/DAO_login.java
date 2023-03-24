@@ -11,6 +11,7 @@ package DAO;
 public interface DAO_login {
     
     public boolean VerificarUsuarios(String usuario, String contrasenia);
-       
+    public String getUsuario();
+    public boolean CambiarContrasenia(String contrasenia);
     
 }
