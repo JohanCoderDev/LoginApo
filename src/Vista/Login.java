@@ -5,13 +5,17 @@
 package Vista;
 
 import Controlador.ControladorLogin;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author sistemas
  */
 public class Login extends javax.swing.JFrame {
-    private static Login logins;
+    
+    private static Login login;
+    
+    private ControladorLogin cLogin;
     
 
     /**
@@ -20,13 +24,14 @@ public class Login extends javax.swing.JFrame {
     private Login() {
         initComponents();
         this.setLocationRelativeTo(null);
+        cLogin = new ControladorLogin();
     }
     
     public static Login getLogin(){
-        if(logins == null){
-            logins = new Login();
+        if(login == null){
+            login = new Login();
         }
-        return logins;
+        return login;
     }
     
 
@@ -133,13 +138,12 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        ControladorLogin cLogin = new ControladorLogin(usuario.getText(), contrasenia.getText());
         
-        
-        boolean valor = ControladorLogin.VerificarUsuarios(cLogin.usuario, cLogin.contrasenia);
-        if(valor == true){
-            Bienvenida bueno = Bienvenida.bienvenida();
-            bueno.setVisible(true);
+        if(cLogin.VerificarUsuarios(usuario.getText(), contrasenia.getText())){
+            JOptionPane.showMessageDialog(this, "Usuario correcto", "Informacion", JOptionPane.OK_OPTION);
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Usuario correcto", "Informacion", JOptionPane.ERROR_MESSAGE);
         }
         
         
