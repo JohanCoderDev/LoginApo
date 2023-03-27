@@ -6,20 +6,27 @@ package Vista;
 
 /**
  *
- * @author Johan Ordoñez
+ * @author JohanCoderDev
  */
 public class Bienvenida extends javax.swing.JFrame {
 
-    
+    // Variable creada para ser utilizada en el patron singleton 
     private static Bienvenida bienvenido;
+    
     /**
-     * Creates new form Bienvenida
+     * Constructor de la clase Bienvenida 
      */
     private Bienvenida() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
     
+    
+    /**
+     * Metodo que devuelve una unica instancia de la clase Login 
+     * Si esta no existe creara una nueva
+     * @return bienvenido
+     */
     public static Bienvenida bienvenida(){
     
         if(bienvenido == null){
@@ -49,7 +56,7 @@ public class Bienvenida extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Bienvenido");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 240, 140));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 240, 140));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 390));
 

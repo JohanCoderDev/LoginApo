@@ -4,28 +4,38 @@
  */
 package Vista;
 
+// Se importan los packages (Controlador - DAO)
 import Controlador.ControladorLogin;
 import DAO.DAO_login;
 import javax.swing.JOptionPane;
 
+
 /**
- *
- * @author sistemas
+ * Clase que inicia la interfaz grafica de inicio de sesion.
+ * @author JohanCoderDev
+ * Version: 1.0
  */
 public class Login extends javax.swing.JFrame {
     
+    // Variable utilizada para la guardar el estado de la clase Login
     private static Login login;
-    private DAO_login cLogin = ControladorLogin.getControladorLogin();
+    
+    // Variable utilizada para guardar el estado de la clase ControladorLogin
+    private final DAO_login cLogin = ControladorLogin.getControladorLogin();
     
     /**
-     * Creates new form Login
+     * Constructor privado de la clase Login
      */
     private Login() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
     }
     
+    /**
+     * Metodo que devuelve una unica instancia de la clase Login
+     * Si esta no existe creara una nueva
+     * @return login
+     */
     public static Login getLogin(){
         if(login == null){
             login = new Login();
@@ -136,13 +146,18 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         
+        //Condicion que verifica si el usuario es correcto.
         if(cLogin.VerificarUsuarios(usuario.getText(), contrasenia.getText())){
-            JOptionPane.showMessageDialog(this, "Usuario correcto", "Informacion", JOptionPane.OK_OPTION);
+            
+            // Confirma el usuario y da acceso a la interfaz Bienvenida.
+            JOptionPane.showMessageDialog(this, "Usuario correcto", "Informacion", 1);
+            Bienvenida bienvenida = Bienvenida.bienvenida();
+            bienvenida.setVisible(true);
         }
         else{
-            JOptionPane.showMessageDialog(this, "Usuario correcto", "Informacion", JOptionPane.ERROR_MESSAGE);
+            // Se niega el acceso y se devuelve una informacion de error.
+            JOptionPane.showMessageDialog(this, "Usuario incorrecto", "Informacion", JOptionPane.ERROR_MESSAGE);
         }
         
         
@@ -154,8 +169,8 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_usuarioActionPerformed
 
     private void usuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usuarioMouseClicked
-        // TODO add your handling code here:
-       
+        
+       // Condicion que devuelve un texto limpio en caso de que reciba una texto con "Digite si usuario"
         if(usuario.getText().equals("Digite su usuario")){
          usuario.setText("");
          usuario.setForeground(new java.awt.Color(0, 0, 0));
@@ -163,7 +178,8 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_usuarioMouseClicked
 
     private void contraseniaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contraseniaMouseClicked
-        // TODO add your handling code here:
+        
+        // Condicion que devuelve un texto limpio en caso de que reciba una texto con "Digite su contraseña"
         if(contrasenia.getText().equals("Digite su contraseña")){
            contrasenia.setForeground(new java.awt.Color(0, 0, 0));
            contrasenia.setText(""); 
@@ -171,12 +187,14 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_contraseniaMouseClicked
 
     private void olvidoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_olvidoMouseEntered
-        // TODO add your handling code here:
+       
+        // Si el usuario pone el cursos del mouse en el texto ¿Olvido su contraseña? este se volvera rojo
         olvido.setForeground(new java.awt.Color(255, 51, 51));
     }//GEN-LAST:event_olvidoMouseEntered
 
     private void olvidoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_olvidoMouseExited
-        // TODO add your handling code here:
+       
+        // Si el usuario pierde el foco del cursor en el texto ¿Olvido su contraseña? este se volvera negro
         olvido.setForeground(new java.awt.Color(0, 0, 0));
     }//GEN-LAST:event_olvidoMouseExited
 
@@ -185,7 +203,8 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_contraseniaActionPerformed
 
     private void contraseniaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_contraseniaFocusLost
-        // TODO add your handling code here:
+       
+        // Si se recibe una cadena "" se devolvera una cadena con "Digite su contraseña" y se cambiara el color a gris
         if(contrasenia.getText().equals("")){
            contrasenia.setForeground(new java.awt.Color(204, 204, 204));
            contrasenia.setText("Digite su contraseña"); 
@@ -194,7 +213,8 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_contraseniaFocusLost
 
     private void usuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usuarioFocusLost
-        // TODO add your handling code here:
+       
+        // Si se recibe una cadena "" se devolvera una cadena con "Digite su usuario" y se cambiara el color a gris
         if(usuario.getText().equals("")){
            usuario.setForeground(new java.awt.Color(204, 204, 204));
            usuario.setText("Digite su usuario"); 
