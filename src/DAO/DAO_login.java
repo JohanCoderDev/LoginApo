@@ -15,20 +15,20 @@ public interface DAO_login {
      * Verifica si el usuario y contraseña son validos
      * @param usuario Nombre del usuario
      * @param contrasenia Contraseña del usuario
-     * @return 
+     * @return Si los datos son correctos devuelve un valor boolean true de lo contrario false
      */
     public boolean VerificarUsuarios(String usuario, String contrasenia);
     
     /**
      * Devuelve el nombre del usuario
-     * @return 
+     * @return El nombre del usuario
      */
     public String getUsuario();
     
     /**
-     * 
+     * Cambia la contraseña actual por una nueva
      * @param contrasenia
-     * @return 
+     * @return La nueva contraseña
      */
     public boolean CambiarContrasenia(String contrasenia);
     

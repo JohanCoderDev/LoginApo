@@ -9,7 +9,7 @@ package Controlador;
 import DAO.DAO_login;
 
 /**
- * Clase que controla los 
+ * Clase que controla el Login
  * @author JohanCoderDev
  * version: 1.0
  */

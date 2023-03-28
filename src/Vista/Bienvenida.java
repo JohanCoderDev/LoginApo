@@ -5,8 +5,9 @@
 package Vista;
 
 /**
- *
+ * Clase de Bienvenida despues de confirmar el usuario
  * @author JohanCoderDev
+ * Version: 1.0
  */
 public class Bienvenida extends javax.swing.JFrame {
 
