@@ -8,6 +8,15 @@ package Vista;
 import Controlador.ControladorLogin;
 import DAO.DAO_login;
 import javax.swing.JOptionPane;
+import Encriptamiento.Security;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 
 /**
@@ -17,6 +26,7 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JFrame {
     
+    Security encriptar = new Security();
     // Variable utilizada para la guardar el estado de la clase Login
     private static Login login;
     
@@ -148,7 +158,26 @@ public class Login extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
         //Condicion que verifica si el usuario es correcto.
-        if(cLogin.VerificarUsuarios(usuario.getText(), contrasenia.getText())){
+        
+        String nUsuario = usuario.getText();
+        String nContrasenia = contrasenia.getText();
+        String valorIncriptado = null;
+        try {
+            valorIncriptado = encriptar.encriptar(nUsuario,nContrasenia);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchPaddingException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidKeyException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalBlockSizeException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (BadPaddingException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(cLogin.VerificarUsuarios(valorIncriptado, nContrasenia)){
             
             // Confirma el usuario y da acceso a la interfaz Bienvenida.
             JOptionPane.showMessageDialog(this, "Usuario correcto", "Informacion", 1);

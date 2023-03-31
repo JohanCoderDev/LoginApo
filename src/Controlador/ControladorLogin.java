@@ -7,6 +7,16 @@ package Controlador;
 
 // Se importa el package DAO
 import DAO.DAO_login;
+import Datos.datos;
+import Encriptamiento.Security;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 /**
  * Clase que controla el Login
@@ -15,6 +25,7 @@ import DAO.DAO_login;
  */
 public class ControladorLogin implements DAO_login{
     
+    Security encriptar = new Security();
     // Variable utilizada para aplicar el patron singleton
     private static ControladorLogin controladorLogin;
     
@@ -49,7 +60,26 @@ public class ControladorLogin implements DAO_login{
     @Override
     public boolean VerificarUsuarios(String usuario, String contrasenia){
         boolean estado = false;
-        if((usuario.equals("daniel"))&&(contrasenia.equals("1234"))) {
+        
+        String usuarioCorrecto = "johan";
+        String contraseniaCorrecta = "1234";
+        String datosCorrectos = null;
+        try {
+            datosCorrectos = encriptar.encriptar(usuarioCorrecto, contraseniaCorrecta);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(ControladorLogin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(ControladorLogin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchPaddingException ex) {
+            Logger.getLogger(ControladorLogin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidKeyException ex) {
+            Logger.getLogger(ControladorLogin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalBlockSizeException ex) {
+            Logger.getLogger(ControladorLogin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (BadPaddingException ex) {
+            Logger.getLogger(ControladorLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if((usuario.equals(datosCorrectos))&&(contrasenia.equals(contraseniaCorrecta))) {
            estado = true;
         }
         return estado;
