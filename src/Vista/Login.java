@@ -162,8 +162,11 @@ public class Login extends javax.swing.JFrame {
         String nUsuario = usuario.getText();
         String nContrasenia = contrasenia.getText();
         String valorIncriptado = null;
+        
         try {
-            valorIncriptado = encriptar.encriptar(nUsuario,nContrasenia);
+            
+            valorIncriptado = encriptar.encriptar(nUsuario);
+            
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchAlgorithmException ex) {
@@ -184,6 +187,7 @@ public class Login extends javax.swing.JFrame {
             Bienvenida bienvenida = Bienvenida.bienvenida();
             bienvenida.setVisible(true);
         }
+        
         else{
             // Se niega el acceso y se devuelve una informacion de error.
             JOptionPane.showMessageDialog(this, "Usuario incorrecto", "Informacion", JOptionPane.ERROR_MESSAGE);

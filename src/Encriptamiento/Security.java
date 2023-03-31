@@ -10,6 +10,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Base64;
+import java.util.ResourceBundle;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
@@ -21,6 +22,16 @@ import javax.crypto.spec.SecretKeySpec;
  * @author sistemas
  */
 public class Security {
+    
+        private ResourceBundle env;
+        private String claveSecreta;
+
+    public Security() {
+        this.env = ResourceBundle.getBundle("jbdc");
+        this.claveSecreta = env.getString("clavesecreta");
+    }
+        
+        
     
     private SecretKeySpec crearClave(String clave) throws UnsupportedEncodingException, NoSuchAlgorithmException{
         
@@ -36,8 +47,8 @@ public class Security {
         
     }
     
-    public String encriptar(String datos, String claveSecreta) throws UnsupportedEncodingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException{
-        SecretKeySpec secretKey = this.crearClave(claveSecreta);
+    public String encriptar(String datos) throws UnsupportedEncodingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException{
+        SecretKeySpec secretKey = this.crearClave(this.claveSecreta);
         
         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
         cipher.init(Cipher.ENCRYPT_MODE, secretKey);
@@ -51,7 +62,7 @@ public class Security {
     }
     
     public String desencriptar(String datosEncriptados, String claveSecreta) throws UnsupportedEncodingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
-    SecretKeySpec secretKey = crearClave(claveSecreta);
+    SecretKeySpec secretKey = crearClave(this.claveSecreta);
     
     Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
     cipher.init(Cipher.DECRYPT_MODE, secretKey);

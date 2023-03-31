@@ -21,13 +21,17 @@ import javax.crypto.NoSuchPaddingException;
  */
 public class datos {
     public static void main(String[] args) {
+        
+        
+       
+        
         String nombre = "johan";
         String clave = "1234";
         Security encriptar = new Security();
         
         try {
             
-            String valorIncriptado = encriptar.encriptar(nombre, clave);
+            String valorIncriptado = encriptar.encriptar(nombre);
             System.out.println(valorIncriptado);
             
             String valorDesencriptado = encriptar.desencriptar(valorIncriptado, clave);

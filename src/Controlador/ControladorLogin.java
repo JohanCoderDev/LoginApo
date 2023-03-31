@@ -65,7 +65,7 @@ public class ControladorLogin implements DAO_login{
         String contraseniaCorrecta = "1234";
         String datosCorrectos = null;
         try {
-            datosCorrectos = encriptar.encriptar(usuarioCorrecto, contraseniaCorrecta);
+            datosCorrectos = encriptar.encriptar(usuarioCorrecto);
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(ControladorLogin.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchAlgorithmException ex) {
